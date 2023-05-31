@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import IMG_8165 from "../assets/images/background.jpg";
 import { Button } from "@rneui/themed";
-import { Input, Icon } from "@rneui/themed";
 
 import {
   StyleSheet,
@@ -10,9 +8,10 @@ import {
   Text,
   View,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
 
-export function LoginPage() {
+export function LoginScreen({ navigation }) {
   return (
     <ImageBackground source={IMG_8165} style={styles.backgroundImage}>
       <View style={styles.loginInfoContainer}>
@@ -40,7 +39,9 @@ export function LoginPage() {
         </View>
         <Text style={styles.loginInfoContainer.bottomText}>
           Dont't have an account?{" "}
-          <Text style={styles.loginInfoContainer.signUpLink}>SIGN UP</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+            <Text style={styles.loginInfoContainer.signUpLink}>SIGN UP</Text>
+          </TouchableOpacity>
         </Text>
       </View>
     </ImageBackground>
