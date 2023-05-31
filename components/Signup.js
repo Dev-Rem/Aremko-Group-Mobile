@@ -1,13 +1,12 @@
 import React from "react";
-import { StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground, View } from "react-native";
 import IMG_8165 from "../assets/images/background.jpg";
 
 export function SignUpScreen() {
   return (
-    <ImageBackground
-      source={IMG_8165}
-      style={styles.backgroundImage}
-    ></ImageBackground>
+    <ImageBackground source={IMG_8165} style={styles.backgroundImage}>
+      <View></View>
+    </ImageBackground>
   );
 }
 
