@@ -3,7 +3,7 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import { ListItem } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
 
-const AccountSettings = () => {
+const AccountSettingsOverlay = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <TouchableOpacity>
@@ -52,4 +52,4 @@ const AccountSettings = () => {
   );
 };
 
-export default AccountSettings;
+export default AccountSettingsOverlay;

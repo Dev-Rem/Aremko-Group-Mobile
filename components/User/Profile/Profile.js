@@ -13,7 +13,8 @@ import { Avatar } from "@rneui/themed";
 import { ListItem } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
 import { Switch } from "@rneui/themed";
-import AccountSettings from "./AccountSettings";
+import AccountSettingsOverlay from "./AccountSettings";
+import TwoFactorAuthenticationOverlay from "./TwoFactorAuthentication";
 
 const { width, height } = Dimensions.get("window");
 
@@ -21,8 +22,10 @@ export function ProfileScreen({ navigation }) {
   const [open, setOpen] = React.useState(false);
 
   const [showOverlay, setShowOverlay] = React.useState(false);
+  const [selectedItem, setSelectedItem] = React.useState(null);
 
-  const openOverlay = () => {
+  const openOverlay = (item) => {
+    setSelectedItem(item);
     setShowOverlay(true);
   };
 
@@ -46,7 +49,7 @@ export function ProfileScreen({ navigation }) {
             <Text style={styles.avatarContainer.avatarText}>Aremko Group</Text>
           </View>
           <View style={{ marginTop: 20 }}>
-            <TouchableOpacity onPress={openOverlay}>
+            <TouchableOpacity onPress={() => openOverlay("accountSettings")}>
               <ListItem bottomDivider>
                 <Icon name="person" type="material" color="#922268" size={30} />
                 <ListItem.Content>
@@ -113,7 +116,7 @@ export function ProfileScreen({ navigation }) {
               </ListItem>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openOverlay("2fa")}>
               <ListItem bottomDivider>
                 <Icon
                   name="two-factor-authentication"
@@ -165,8 +168,16 @@ export function ProfileScreen({ navigation }) {
                       size={30}
                     />
                   </TouchableOpacity>
-                  {/* Content of the overlay screen */}
-                  <AccountSettings />
+                  {selectedItem === "accountSettings" ? (
+                    <AccountSettingsOverlay />
+                  ) : (
+                    <></>
+                  )}
+                  {selectedItem === "2fa" ? (
+                    <TwoFactorAuthenticationOverlay />
+                  ) : (
+                    <></>
+                  )}
                 </View>
               </View>
             </Modal>
