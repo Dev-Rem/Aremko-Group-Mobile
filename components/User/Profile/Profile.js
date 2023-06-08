@@ -15,7 +15,7 @@ import { Icon } from "@rneui/themed";
 import { Switch } from "@rneui/themed";
 import AccountSettingsOverlay from "./AccountSettings";
 import TwoFactorAuthenticationOverlay from "./TwoFactorAuthentication";
-
+import ContactUsOverlay from "./ContactUs";
 const { width, height } = Dimensions.get("window");
 
 export function ProfileScreen({ navigation }) {
@@ -132,7 +132,7 @@ export function ProfileScreen({ navigation }) {
               </ListItem>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openOverlay("contactUs")}>
               <ListItem bottomDivider>
                 <Icon name="info" type="material" color="#922268" size={30} />
                 <ListItem.Content>
@@ -178,6 +178,7 @@ export function ProfileScreen({ navigation }) {
                   ) : (
                     <></>
                   )}
+                  {selectedItem === "contactUs" ? <ContactUsOverlay /> : <></>}
                 </View>
               </View>
             </Modal>
