@@ -53,6 +53,7 @@ const style = StyleSheet.create({
   },
   headText: {
     fontSize: 20,
+    fontWeight: "bold",
   },
 
   formContainer: {

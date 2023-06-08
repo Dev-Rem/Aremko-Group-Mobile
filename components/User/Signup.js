@@ -142,14 +142,12 @@ export function SignUpScreen({ navigation }) {
           </View>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          {/* <TouchableOpacity onPress={() => setChecked(true)}> */}
           <Checkbox
             style={{ width: 15, height: 15, marginRight: 5 }}
             value={checked}
             onValueChange={setChecked}
             color={checked ? "#922268" : undefined}
           />
-          {/* </TouchableOpacity> */}
 
           <Text>I agree to the terms and conditions</Text>
         </View>

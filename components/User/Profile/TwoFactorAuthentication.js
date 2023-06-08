@@ -14,7 +14,6 @@ const { width, height } = Dimensions.get("window");
 const TwoFactorAuthenticationOverlay = () => {
   return (
     <KeyboardAvoidingView
-      // style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -59,6 +58,7 @@ const style = StyleSheet.create({
   },
   headText: {
     fontSize: 20,
+    fontWeight: "bold",
   },
 
   formContainer: {
@@ -82,7 +82,6 @@ const style = StyleSheet.create({
     shadowRadius: 4,
   },
   button: {
-    // width: 150,
     marginTop: 20,
     backgroundColor: "#922268",
     borderColor: "white",
