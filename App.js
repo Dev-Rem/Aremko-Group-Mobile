@@ -6,6 +6,7 @@ import { SignUpScreen } from "./components/User/Signup";
 import { DashboardScreen } from "./components/Dashboard";
 import { KycScreen } from "./components/User/KYC";
 import { ProfileScreen } from "./components/User/Profile/Profile";
+import { ResetPasswordScreen } from "./components/User/ResetPassword";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
         <Stack.Screen name="Kyc" component={KycScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Reset-Password" component={ResetPasswordScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

@@ -70,12 +70,19 @@ export function LoginScreen({ navigation }) {
             />
           </View>
           <Text style={styles.loginInfoContainer.bottomText}>
-            Dont't have an account?{" "}
+            Forgot password?{"  "}
             <TouchableOpacity
-              onPress={() => navigation.navigate("Signup")}
-              style={{ paddingTop: 10 }}
+              onPress={() => navigation.navigate("Reset-Password")}
             >
-              <Text style={styles.loginInfoContainer.signUpLink}>SIGN UP</Text>
+              <Text style={styles.loginInfoContainer.signUpLink}>
+                Reset Now
+              </Text>
+            </TouchableOpacity>
+          </Text>
+          <Text style={styles.loginInfoContainer.bottomText}>
+            Dont't have an account?{"  "}
+            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+              <Text style={styles.loginInfoContainer.signUpLink}>Sign Up</Text>
             </TouchableOpacity>
           </Text>
         </View>
@@ -121,7 +128,6 @@ const styles = StyleSheet.create({
       borderRadius: 5,
     },
     bottomText: {
-      marginTop: 15,
       color: "white",
     },
     signUpLink: {
