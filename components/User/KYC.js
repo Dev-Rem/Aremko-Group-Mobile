@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   View,
   Text,
-  TextInput as DefaultTextInput,
+  TextInput,
   Keyboard,
   Button as DefaultButton,
   TouchableWithoutFeedback,
 } from "react-native";
 import Modal from "react-native-modal";
 import { Picker } from "@react-native-picker/picker";
-import { TextInput } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import Checkbox from "expo-checkbox";
 import { Button } from "@rneui/themed";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function KycScreen({ navigation }) {
-  const [selectedItem, setSelectedItem] = React.useState("");
   const [isPickerVisible, setIsPickerVisible] = React.useState(false);
   const [images, setImages] = React.useState({ front: {}, back: {} });
   const [checked, setChecked] = React.useState({ front: false, back: false });
   const [name, setName] = React.useState("front");
+  const [data, setData] = React.useState({
+    bvn: "",
+    type_of_id: "",
+    id_number: "",
+    front_of_id: "",
+    back_of_id: "",
+  });
+
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
+  };
 
   const handleClosePicker = () => {
     setIsPickerVisible(false);
@@ -31,7 +43,6 @@ export function KycScreen({ navigation }) {
   };
 
   const pickImage = async (name) => {
-    console.log(name);
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (status === "granted") {
@@ -65,6 +76,11 @@ export function KycScreen({ navigation }) {
     });
     setName("front");
   };
+
+  React,
+    useEffect(() => {
+      console.log(data);
+    }, [data]);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -76,55 +92,46 @@ export function KycScreen({ navigation }) {
           <Text style={styles.signupMessageContainer.signupMessage}>
             Proof Of Identity
           </Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
           <Text style={{ color: "#922268", fontSize: 15 }}>
             Kindly make sure all uploaded documents are clear.
           </Text>
         </View>
 
         <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.inputContainer.label}>
+          <Text style={styles.signupContainer.label}>
             Bank Verification Number (BVN) *
           </Text>
-          <DefaultTextInput
+          <TextInput
             style={styles.signupContainer.input}
             placeholder="12345678901"
             maxLength={11}
-            placeholderTextColor="#bfbfbf"
             underlineColor="transparent"
+            value={data.bvn}
+            onChangeText={(text) => handleChange("bvn", text)}
           />
         </View>
         <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.inputContainer.label}>
+          <Text style={styles.signupContainer.label}>
             Type of Identification (ID) *
           </Text>
 
-          <TextInput
-            placeholder="Type of Identification"
-            style={{
-              marginTop: 2,
-              backgroundColor: "white",
-              borderRadius: 5,
-              height: 40,
-              shadowColor: "black",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
+          <TouchableOpacity
+            onPress={() => {
+              Keyboard.dismiss();
+              setIsPickerVisible(true);
             }}
-            value={selectedItem}
-            editable={false}
-            underlineColor="transparent"
-            placeholderTextColor="#bfbfbf"
-            right={
-              <TextInput.Icon
-                icon="arrow-down-drop-circle-outline"
-                style={{ marginTop: 10 }}
-                onPress={() => {
-                  Keyboard.dismiss();
-                  setIsPickerVisible(true);
-                }}
-              />
-            }
-          />
+          >
+            <TextInput
+              style={styles.signupContainer.input}
+              maxLength={11}
+              editable={false}
+              placeholder="Type of Identification"
+              value={data.type_of_id}
+            />
+          </TouchableOpacity>
 
           <View>
             <Modal
@@ -146,8 +153,8 @@ export function KycScreen({ navigation }) {
                 </View>
 
                 <Picker
-                  selectedValue={selectedItem}
-                  onValueChange={(value) => setSelectedItem(value)}
+                  selectedValue={data.type_of_id}
+                  onValueChange={(value) => handleChange("type_of_id", value)}
                 >
                   <Picker.Item label="Select Type of ID" value="" />
                   <Picker.Item
@@ -168,16 +175,13 @@ export function KycScreen({ navigation }) {
           </View>
         </View>
         <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.inputContainer.label}>
-            {" "}
-            ID No *
-          </Text>
-          <DefaultTextInput
+          <Text style={styles.signupContainer.label}>ID No *</Text>
+          <TextInput
             style={styles.signupContainer.input}
             placeholder="12345678901"
-            maxLength={11}
-            underlineColor="transparent"
-            placeholderTextColor="#bfbfbf"
+            maxLength={20}
+            value={data.id_number}
+            onChangeText={(text) => handleChange("id_number", text)}
           />
         </View>
         <View

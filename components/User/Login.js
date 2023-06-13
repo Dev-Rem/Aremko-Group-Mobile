@@ -15,9 +15,15 @@ import {
 
 export function LoginScreen({ navigation }) {
   const [email, setEmail] = React.useState("");
+  const [data, setData] = React.useState({
+    email: "",
+    password: "",
+  });
 
-  const handleEmailChange = (text) => {
-    setEmail(text);
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
   };
 
   const validateEmail = () => {
@@ -29,6 +35,7 @@ export function LoginScreen({ navigation }) {
       // e.g., submit form, call API, etc.
     }
   };
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -41,8 +48,8 @@ export function LoginScreen({ navigation }) {
             <TextInput
               style={styles.loginInfoContainer.input}
               placeholder="john.doe@email.com"
-              value={email}
-              onChangeText={handleEmailChange}
+              value={data.email}
+              onChangeText={(text) => handleChange("email", text)}
               keyboardType="email-address"
             />
           </View>
@@ -52,6 +59,7 @@ export function LoginScreen({ navigation }) {
               style={styles.loginInfoContainer.input}
               placeholder="Password"
               secureTextEntry={true}
+              onChangeText={(text) => handleChange("password", text)}
             />
             <Button
               style={styles.loginInfoContainer.loginButton}
