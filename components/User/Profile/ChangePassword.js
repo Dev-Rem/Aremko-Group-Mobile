@@ -21,21 +21,24 @@ const ChangePasswordOverlay = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.headText}>Change Password</Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
 
           <View style={styles.formContainer}>
-            <Text style={styles.label}>Old Password</Text>
+            <Text style={styles.label}>Old Password *</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
               placeholder="Old password"
             />
-            <Text style={styles.label}>New Password</Text>
+            <Text style={styles.label}>New Password *</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
               placeholder="New password"
             />
-            <Text style={styles.label}>Confirm NewPassword</Text>
+            <Text style={styles.label}>Confirm NewPassword *</Text>
             <TextInput
               style={styles.input}
               secureTextEntry

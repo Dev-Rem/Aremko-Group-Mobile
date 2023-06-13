@@ -19,16 +19,19 @@ const TwoFactorAuthenticationOverlay = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={style.container}>
           <Text style={style.headText}>Set new security question</Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
 
           <View style={style.formContainer}>
-            <Text style={style.label}>Security question</Text>
+            <Text style={style.label}>Security question *</Text>
             <TextInput
               style={style.input}
               placeholder="e.g. where were you born?"
             />
-            <Text style={style.label}>Secret answer</Text>
+            <Text style={style.label}>Secret answer *</Text>
             <TextInput style={style.input} placeholder="e.g. name of city" />
-            <Text style={style.label}>Password</Text>
+            <Text style={style.label}>Password *</Text>
             <TextInput
               style={style.input}
               secureTextEntry

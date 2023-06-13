@@ -21,14 +21,17 @@ const UpdateEmailAddressOverlay = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.headText}>Update Email</Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
 
           <View style={styles.formContainer}>
-            <Text style={styles.label}>New Email Address</Text>
+            <Text style={styles.label}>New Email Address *</Text>
             <TextInput
               style={styles.input}
               placeholder="e.g. example@email.com"
             />
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>Password *</Text>
             <TextInput
               style={styles.input}
               secureTextEntry

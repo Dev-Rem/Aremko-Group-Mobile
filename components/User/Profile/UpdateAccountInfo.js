@@ -20,17 +20,20 @@ const UpdateAccountInfoOverlay = () => {
     >
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <Text style={styles.headText}>Update Account Information</Text>
+          <Text style={styles.headText}> Account Info Update</Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
 
           <View style={styles.formContainer}>
-            <Text style={styles.label}>First Name</Text>
+            <Text style={styles.label}>First Name *</Text>
             <TextInput style={styles.input} placeholder="John" />
-            <Text style={styles.label}>Last Name</Text>
+            <Text style={styles.label}>Last Name *</Text>
             <TextInput style={styles.input} placeholder="Doe" />
 
-            <Text style={styles.label}>Phone Number</Text>
-            <TextInput style={styles.input} placeholder="" />
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>Phone Number *</Text>
+            <TextInput style={styles.input} placeholder="000 0000 0000" />
+            <Text style={styles.label}>Password*</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
