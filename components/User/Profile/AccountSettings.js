@@ -14,6 +14,7 @@ import UpdateAccountInfoOverlay from "./UpdateAccountInfo";
 import UpdateKycOverlay from "./UpdateKyc";
 import ChangePasswordOverlay from "./ChangePassword";
 import UpdateEmailAddressOverlay from "./UpdateEmailAddress";
+import NotificationSettingsOverlay from "./NotificationSettings";
 const { width, height } = Dimensions.get("window");
 
 const AccountSettingsOverlay = () => {
@@ -60,7 +61,7 @@ const AccountSettingsOverlay = () => {
             </ListItem.Content>
           </ListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => openOverlay("updateKyc")}>
+        <TouchableOpacity onPress={() => openOverlay("notificationSettings")}>
           <ListItem bottomDivider>
             <ListItem.Content>
               <ListItem.Subtitle>Notification Settings </ListItem.Subtitle>
@@ -89,6 +90,11 @@ const AccountSettingsOverlay = () => {
 
             {selectedItem === "changePassword" ? (
               <ChangePasswordOverlay />
+            ) : (
+              <></>
+            )}
+            {selectedItem === "notificationSettings" ? (
+              <NotificationSettingsOverlay />
             ) : (
               <></>
             )}
