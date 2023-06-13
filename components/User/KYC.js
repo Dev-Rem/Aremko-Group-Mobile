@@ -77,10 +77,6 @@ export function KycScreen({ navigation }) {
     setName("front");
   };
 
-  React,
-    useEffect(() => {
-      console.log(data);
-    }, [data]);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -111,6 +107,7 @@ export function KycScreen({ navigation }) {
             underlineColor="transparent"
             value={data.bvn}
             onChangeText={(text) => handleChange("bvn", text)}
+            keyboardType="numeric"
           />
         </View>
         <View style={styles.signupContainer.inputContainer}>

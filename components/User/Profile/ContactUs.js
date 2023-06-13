@@ -16,7 +16,7 @@ const ContactUsOverlay = () => {
         <Text style={style.headText}>Help Center / Contact Us</Text>
         <View style={style.formContainer}>
           <Text style={style.label}>Website:</Text>
-          <Text style={style.info}> aremkgroup.com</Text>
+          <Text style={style.info}> www.aremkogroup.com</Text>
         </View>
         <View style={style.formContainer}>
           <Text style={style.label}>Contact:</Text>

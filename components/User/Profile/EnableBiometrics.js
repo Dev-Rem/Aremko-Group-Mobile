@@ -13,7 +13,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const { width, height } = Dimensions.get("window");
 
 const EnableBiometricsOverlay = () => {
-  const [open, setOpen] = React.useState(false);
   const [useBiometrics, setUseBiometrics] = React.useState({
     login: false,
     transaction: false,
