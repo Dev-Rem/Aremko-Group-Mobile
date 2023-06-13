@@ -14,6 +14,18 @@ import { Button } from "@rneui/themed";
 const { width, height } = Dimensions.get("window");
 
 const UpdateEmailAddressOverlay = () => {
+  const [data, setData] = React.useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
+  };
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -30,12 +42,17 @@ const UpdateEmailAddressOverlay = () => {
             <TextInput
               style={styles.input}
               placeholder="e.g. example@email.com"
+              value={data.new_email}
+              onChangeText={(text) => handleChange("email", text)}
+              keyboardType="email-address"
             />
             <Text style={styles.label}>Password *</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
               placeholder="your login password"
+              value={data.password}
+              onChangeText={(text) => handleChange("password", text)}
             />
           </View>
           <Button

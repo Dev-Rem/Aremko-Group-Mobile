@@ -14,6 +14,19 @@ import { Button } from "@rneui/themed";
 const { width, height } = Dimensions.get("window");
 
 const UpdateAccountInfoOverlay = () => {
+  const [data, setData] = React.useState({
+    firstname: "",
+    lastname: "",
+    phone_number: "",
+    password: "",
+  });
+
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -27,17 +40,35 @@ const UpdateAccountInfoOverlay = () => {
 
           <View style={styles.formContainer}>
             <Text style={styles.label}>First Name *</Text>
-            <TextInput style={styles.input} placeholder="John" />
+            <TextInput
+              style={styles.input}
+              placeholder="John"
+              value={data.firstname}
+              onChangeText={(text) => handleChange("firstname", text)}
+            />
             <Text style={styles.label}>Last Name *</Text>
-            <TextInput style={styles.input} placeholder="Doe" />
+            <TextInput
+              style={styles.input}
+              placeholder="Doe"
+              value={data.lastname}
+              onChangeText={(text) => handleChange("lastname", text)}
+            />
 
             <Text style={styles.label}>Phone Number *</Text>
-            <TextInput style={styles.input} placeholder="000 0000 0000" />
+            <TextInput
+              style={styles.input}
+              placeholder="000 0000 0000"
+              value={data.phone_number}
+              keyboardType="numeric"
+              onChangeText={(text) => handleChange("phone_number", text)}
+            />
             <Text style={styles.label}>Password*</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
               placeholder="your login password"
+              value={data.password}
+              onChangeText={(text) => handleChange("password", text)}
             />
           </View>
           <Button

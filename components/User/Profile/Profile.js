@@ -13,13 +13,16 @@ import { Avatar } from "@rneui/themed";
 import { ListItem } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
 import { Switch } from "@rneui/themed";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import AccountSettingsOverlay from "./AccountSettings";
 import TwoFactorAuthenticationOverlay from "./TwoFactorAuthentication";
 import ContactUsOverlay from "./ContactUs";
+import EnableBiometricsOverlay from "./EnableBiometrics";
 const { width, height } = Dimensions.get("window");
 
 export function ProfileScreen({ navigation }) {
-  const [open, setOpen] = React.useState(false);
+  const [useDarkmode, setUseDarkmode] = React.useState(false);
+  const [hideBalance, setHideBalance] = React.useState(false);
 
   const [showOverlay, setShowOverlay] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(null);
@@ -32,7 +35,38 @@ export function ProfileScreen({ navigation }) {
   const closeOverlay = () => {
     setShowOverlay(false);
   };
+  const handleWalletBalanceChange = async () => {
+    if (hideBalance !== true) {
+      await AsyncStorage.setItem("HideWalletBalance", "true");
+      setHideBalance(true);
+    } else {
+      await AsyncStorage.setItem("HideWalletBalance", "false");
+      setHideBalance(false);
+    }
+  };
 
+  const handleDarkmodeChange = async () => {
+    if (useDarkmode !== true) {
+      await AsyncStorage.setItem("DarkMode", "true");
+      setUseDarkmode(true);
+    } else {
+      await AsyncStorage.setItem("DarkMode", "false");
+      setUseDarkmode(false);
+    }
+  };
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const hideWalletBalance = await AsyncStorage.getItem("HideWalletBalance");
+
+      const darkMode = await AsyncStorage.getItem("DarkMode");
+
+      setHideBalance(JSON.parse(hideWalletBalance));
+      setUseDarkmode(JSON.parse(darkMode));
+    };
+
+    fetchData();
+  }, [useDarkmode, hideBalance]);
   return (
     <View style={{ flex: 1, marginTop: 45 }}>
       <View style={styles.container}>
@@ -81,10 +115,14 @@ export function ProfileScreen({ navigation }) {
                 <ListItem.Content>
                   <ListItem.Subtitle>Hide Wallet Balances</ListItem.Subtitle>
                 </ListItem.Content>
-                <Switch value={open} onValueChange={setOpen} color="#922268" />
+                <Switch
+                  value={hideBalance}
+                  onValueChange={handleWalletBalanceChange}
+                  color="#922268"
+                />
               </ListItem>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openOverlay("enableBiometrics")}>
               <ListItem bottomDivider>
                 <Icon
                   name="fingerprint"
@@ -93,11 +131,8 @@ export function ProfileScreen({ navigation }) {
                   size={30}
                 />
                 <ListItem.Content>
-                  <ListItem.Subtitle>
-                    Enable FaceID/Fingerprint unlock
-                  </ListItem.Subtitle>
+                  <ListItem.Subtitle>Enable Biometrics</ListItem.Subtitle>
                 </ListItem.Content>
-                <Switch value={open} onValueChange={setOpen} color="#922268" />
               </ListItem>
             </TouchableOpacity>
 
@@ -112,7 +147,11 @@ export function ProfileScreen({ navigation }) {
                 <ListItem.Content>
                   <ListItem.Subtitle>Dark Mode</ListItem.Subtitle>
                 </ListItem.Content>
-                <Switch value={open} onValueChange={setOpen} color="#922268" />
+                <Switch
+                  value={useDarkmode}
+                  onValueChange={handleDarkmodeChange}
+                  color="#922268"
+                />
               </ListItem>
             </TouchableOpacity>
 
@@ -141,7 +180,7 @@ export function ProfileScreen({ navigation }) {
               </ListItem>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <ListItem bottomDivider>
                 <Icon name="logout" type="material" color="red" size={30} />
                 <ListItem.Content>
@@ -179,6 +218,11 @@ export function ProfileScreen({ navigation }) {
                     <></>
                   )}
                   {selectedItem === "contactUs" ? <ContactUsOverlay /> : <></>}
+                  {selectedItem === "enableBiometrics" ? (
+                    <EnableBiometricsOverlay />
+                  ) : (
+                    <></>
+                  )}
                 </View>
               </View>
             </Modal>

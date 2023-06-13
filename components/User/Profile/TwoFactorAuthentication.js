@@ -12,6 +12,17 @@ import { Button } from "@rneui/themed";
 const { width, height } = Dimensions.get("window");
 
 const TwoFactorAuthenticationOverlay = () => {
+  const [data, setData] = React.useState({
+    security_question: "",
+    secret_answer: "",
+    password: "",
+  });
+
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -28,14 +39,23 @@ const TwoFactorAuthenticationOverlay = () => {
             <TextInput
               style={style.input}
               placeholder="e.g. where were you born?"
+              value={data.security_question}
+              onChangeText={(text) => handleChange("security_question", text)}
             />
             <Text style={style.label}>Secret answer *</Text>
-            <TextInput style={style.input} placeholder="e.g. name of city" />
+            <TextInput
+              style={style.input}
+              placeholder="e.g. name of city"
+              value={data.secret_answer}
+              onChangeText={(text) => handleChange("secret_answer", text)}
+            />
             <Text style={style.label}>Password *</Text>
             <TextInput
               style={style.input}
               secureTextEntry
               placeholder="your login password"
+              value={data.password}
+              onChangeText={(text) => handleChange("password", text)}
             />
           </View>
           <Button
