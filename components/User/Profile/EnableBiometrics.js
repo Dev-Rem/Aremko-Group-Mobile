@@ -38,7 +38,6 @@ const EnableBiometricsOverlay = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await AsyncStorage.getItem("Biometrics");
-      console.log(response);
       if (response !== null) {
         const parsedResponse = JSON.parse(response);
         setUseBiometrics(parsedResponse);

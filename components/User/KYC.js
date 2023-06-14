@@ -88,11 +88,12 @@ export function KycScreen({ navigation }) {
           <Text style={styles.signupMessageContainer.signupMessage}>
             Proof Of Identity
           </Text>
-          <Text style={{ marginTop: 5, fontSize: 12 }}>
-            Fields with asterisk (*) are required.
-          </Text>
+
           <Text style={{ color: "#922268", fontSize: 15 }}>
-            Kindly make sure all uploaded documents are clear.
+            Make sure uploaded documents are clear
+          </Text>
+          <Text style={{ fontSize: 12 }}>
+            Fields with asterisk (*) are required
           </Text>
         </View>
 

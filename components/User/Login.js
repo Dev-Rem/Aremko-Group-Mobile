@@ -93,7 +93,7 @@ export function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    marginTop: 40,
+    marginTop: 45,
     flex: 1,
     resizeMode: "cover",
     width: "100%",
