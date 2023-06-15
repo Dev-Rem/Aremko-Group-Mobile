@@ -71,14 +71,26 @@ export function ProfileScreen({ navigation }) {
     <View style={{ flex: 1, marginTop: 45 }}>
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.titleTextContainer}>
-            <Text style={styles.titleTextContainer.titleText}>Account</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingHorizontal: 30,
+              paddingTop: 30,
+            }}
+          >
+            <Text style={{ fontSize: 40 }}>Account</Text>
+            <Avatar
+              size={50}
+              rounded
+              source={require("../../../assets/AremkoLogo3.png")}
+            />
           </View>
           <View style={styles.avatarContainer}>
             <Avatar
               size={80}
               rounded
-              source={require("../../../assets/AremkoLogo.jpg")}
+              source={require("../../../assets/IMG_6271.jpg")}
             />
             <Text style={styles.avatarContainer.avatarText}>Aremko Group</Text>
           </View>
@@ -243,20 +255,10 @@ const styles = StyleSheet.create({
     width: width * 1.0,
   },
 
-  titleTextContainer: {
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    marginTop: 30,
-    width: "auto",
-    titleText: {
-      paddingLeft: 10,
-      fontSize: 45,
-    },
-  },
   avatarContainer: {
     marginTop: 10,
     width: width * 1.0,
-    padding: 5,
+    paddingHorizontal: 20,
     flexDirection: "row",
     avatarText: {
       marginTop: 20,

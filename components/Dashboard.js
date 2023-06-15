@@ -18,6 +18,8 @@ import AremkoCON from "../assets/images/AremkoCON.png";
 import { Image } from "expo-image";
 import { BottomIconMenu } from "./Utils/BottomIconMenu";
 import { Icon } from "@rneui/themed";
+import { Avatar } from "@rneui/themed";
+
 import * as Clipboard from "expo-clipboard";
 
 const { width, height } = Dimensions.get("window");
@@ -35,7 +37,21 @@ export function DashboardScreen({ navigation }) {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={{ fontSize: 40 }}>Dashboard</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingTop: 30,
+            }}
+          >
+            <Text style={{ fontSize: 40 }}>Dashboard</Text>
+            <Avatar
+              size={50}
+              rounded
+              source={require("../assets/AremkoLogo3.png")}
+            />
+          </View>
+
           <View style={styles.balanceCard}>
             <View
               style={{ flexDirection: "row", justifyContent: "space-between" }}
