@@ -7,6 +7,7 @@ import { DashboardScreen } from "./components/Dashboard";
 import { KycScreen } from "./components/User/KYC";
 import { ProfileScreen } from "./components/User/Profile/Profile";
 import { ResetPasswordScreen } from "./components/User/ResetPassword";
+import { WalletScreen } from "./components/Wallet";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignUpScreen} />
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
+        <Stack.Screen name="Wallet" component={WalletScreen} />
         <Stack.Screen name="Kyc" component={KycScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Reset-Password" component={ResetPasswordScreen} />

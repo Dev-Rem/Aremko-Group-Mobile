@@ -25,9 +25,21 @@ export function BottomIconMenu({ navigation }) {
           type="ionicon"
           color="#922268"
           size={30}
-          onPress={() => console.log("hello")}
+          onPress={() => navigation.navigate("Wallet")}
         />
         <Text style={styles.bottomIconMenu.iconContainer.iconText}>Wallet</Text>
+      </View>
+      <View style={styles.bottomIconMenu.iconContainer}>
+        <Icon
+          name="bell"
+          type="material-community"
+          color="#922268"
+          size={30}
+          onPress={() => console.log("alerts")}
+        />
+        <Text style={styles.bottomIconMenu.iconContainer.iconText}>
+          Notificantions
+        </Text>
       </View>
       <View style={styles.bottomIconMenu.iconContainer}>
         <Icon
