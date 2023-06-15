@@ -40,7 +40,6 @@ const NotificationSettingsOverlay = () => {
       }
     };
     fetchData();
-    console.log(data);
   }, []);
 
   return (

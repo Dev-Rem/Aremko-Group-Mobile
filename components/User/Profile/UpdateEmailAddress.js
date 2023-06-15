@@ -23,9 +23,6 @@ const UpdateEmailAddressOverlay = () => {
       return { ...prevState, [key]: value };
     });
   };
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
