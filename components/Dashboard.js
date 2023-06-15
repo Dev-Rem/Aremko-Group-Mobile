@@ -14,13 +14,12 @@ import AremkoInv from "../assets/images/AremkoINV.png";
 import AremkoRE from "../assets/images/AremkoRE.png";
 import PeerClan from "../assets/images/Peerclan.png";
 import AremkoCON from "../assets/images/AremkoCON.png";
+import { handleCopyToClipboard } from "./Utils/CopyToClipboard";
 
 import { Image } from "expo-image";
 import { BottomIconMenu } from "./Utils/BottomIconMenu";
 import { Icon } from "@rneui/themed";
 import { Avatar } from "@rneui/themed";
-
-import * as Clipboard from "expo-clipboard";
 
 const { width, height } = Dimensions.get("window");
 
@@ -28,9 +27,6 @@ export function DashboardScreen({ navigation }) {
   const [showAccountNumber, setShowAccountNumber] = React.useState(true);
   const sensitiveInfo = showAccountNumber ? "******" : "200,000";
 
-  const handleCopyToClipboard = async (text) => {
-    await Clipboard.setStringAsync(text);
-  };
   const blurhash =
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
   return (
@@ -130,6 +126,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}>Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -141,6 +150,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}> Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -152,6 +174,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}>Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -163,6 +198,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}>Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -174,6 +222,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}> Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -185,6 +246,19 @@ export function DashboardScreen({ navigation }) {
                   contentFit="fit"
                   transition={1000}
                 />
+                <View
+                  style={{
+                    marginHorizontal: 20,
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text style={{ color: "#922268" }}> Balance</Text>
+                  <Text
+                    style={{ fontSize: 30, marginTop: 3, marginHorizontal: 20 }}
+                  >
+                    &#8358;{sensitiveInfo}
+                  </Text>
+                </View>
               </View>
             </TouchableOpacity>
           </View>
@@ -210,7 +284,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 150,
     backgroundColor: "#922268",
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 20,
     padding: 30,
     marginTop: 10,
@@ -234,7 +308,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     minWidth: "100%",
     height: 150,
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 30,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
@@ -243,7 +317,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 70,
-    borderTopEndRadius: 5,
-    borderTopStartRadius: 5,
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
   },
 });
