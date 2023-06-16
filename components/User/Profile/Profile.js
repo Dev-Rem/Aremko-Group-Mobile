@@ -18,7 +18,7 @@ import AccountSettingsOverlay from "./AccountSettings";
 import TwoFactorAuthenticationOverlay from "./TwoFactorAuthentication";
 import ContactUsOverlay from "./ContactUs";
 import EnableBiometricsOverlay from "./EnableBiometrics";
-const { width, height } = Dimensions.get("window");
+import { styles } from "../../Utils/Styles";
 
 export function ProfileScreen({ navigation }) {
   const [useDarkmode, setUseDarkmode] = React.useState(false);
@@ -69,7 +69,7 @@ export function ProfileScreen({ navigation }) {
   }, [useDarkmode, hideBalance]);
   return (
     <View style={{ flex: 1, marginTop: 45 }}>
-      <View style={styles.container}>
+      <View style={styles.profileContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View
             style={{
@@ -246,44 +246,3 @@ export function ProfileScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    width: width * 1.0,
-  },
-
-  avatarContainer: {
-    marginTop: 10,
-    width: width * 1.0,
-    paddingHorizontal: 20,
-    flexDirection: "row",
-    avatarText: {
-      marginTop: 20,
-      fontSize: 30,
-      marginLeft: 20,
-    },
-  },
-
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  overlayContent: {
-    backgroundColor: "#d6d6d6",
-    width: "100%",
-    borderRadius: 8,
-    paddingTop: 40,
-    flexDirection: "column",
-  },
-  closeButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-});

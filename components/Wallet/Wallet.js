@@ -16,7 +16,7 @@ import { Icon } from "@rneui/themed";
 import { handleCopyToClipboard } from "../Utils/CopyToClipboard";
 import * as Clipboard from "expo-clipboard";
 
-const { width, height } = Dimensions.get("window");
+import { styles } from "../Utils/Styles";
 
 export function WalletScreen({ navigation }) {
   const [showCardDetails, setShowCardDetails] = React.useState(true);
@@ -198,85 +198,3 @@ export function WalletScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    width: width * 1.0,
-    height: height * 1.0,
-    paddingHorizontal: 20,
-    marginTop: 45,
-  },
-  debitCardContainer: {
-    justifyContent: "space-between",
-    height: 200,
-    backgroundColor: "#922268",
-    borderRadius: 10,
-    marginTop: 10,
-    padding: 20,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
-  },
-  debitCardDetailsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  miniCardContainer: {
-    justifyContent: "space-around",
-    flexDirection: "row",
-    marginTop: 20,
-  },
-  miniCard: {
-    width: 150,
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  miniCardPurple: {
-    backgroundColor: "#922268",
-  },
-  miniCardWhite: {
-    backgroundColor: "white",
-  },
-  transactionListItem: {
-    backgroundColor: "white",
-    height: 70,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: 10,
-    margin: 10,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  overlayContent: {
-    backgroundColor: "white",
-    width: "100%",
-    borderRadius: 8,
-    paddingTop: 60,
-    flexDirection: "column",
-  },
-  closeButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-});
