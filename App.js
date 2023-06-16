@@ -7,7 +7,7 @@ import { DashboardScreen } from "./components/Dashboard";
 import { KycScreen } from "./components/User/KYC";
 import { ProfileScreen } from "./components/User/Profile/Profile";
 import { ResetPasswordScreen } from "./components/User/ResetPassword";
-import { WalletScreen } from "./components/Wallet";
+import { WalletScreen } from "./components/Wallet/Wallet";
 const Stack = createStackNavigator();
 
 export default function App() {

@@ -6,27 +6,36 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 
-import { BottomIconMenu } from "./Utils/BottomIconMenu";
-// import visaLogo from "../assets/images/visaLogo2.png";
-
+import { BottomIconMenu } from "../Utils/BottomIconMenu";
+import FundWalletOverlay from "./FundWallet";
 import { Avatar } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
-import { handleCopyToClipboard } from "./Utils/CopyToClipboard";
+import { handleCopyToClipboard } from "../Utils/CopyToClipboard";
 import * as Clipboard from "expo-clipboard";
 
 const { width, height } = Dimensions.get("window");
 
 export function WalletScreen({ navigation }) {
   const [showCardDetails, setShowCardDetails] = React.useState(true);
+  const [showOverlay, setShowOverlay] = React.useState(false);
+  const [selectedItem, setSelectedItem] = React.useState(null);
+
+  const [data, setData] = React.useState({});
+
   const sensitiveInfo = showCardDetails
     ? "**** **** **** 3637"
     : "2334 4453 3454 3637";
-  const [data, setData] = React.useState({});
 
-  const handleCopyToClipboard = async (text) => {
-    await Clipboard.setStringAsync(text);
+  const openOverlay = (item) => {
+    setSelectedItem(item);
+    setShowOverlay(true);
+  };
+
+  const closeOverlay = () => {
+    setShowOverlay(false);
   };
   const blurhash =
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -45,7 +54,7 @@ export function WalletScreen({ navigation }) {
             <Avatar
               size={50}
               rounded
-              source={require("../assets/AremkoLogo3.png")}
+              source={require("../../assets/AremkoLogo3.png")}
             />
           </View>
           <View style={styles.debitCardContainer}>
@@ -120,7 +129,7 @@ export function WalletScreen({ navigation }) {
           </View>
           <View style={{ minWidth: "100%" }}></View>
           <View style={styles.miniCardContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openOverlay("fundWallet")}>
               <View style={[styles.miniCard, styles.miniCardPurple]}>
                 <Text style={{ fontSize: 15, color: "white" }}>
                   Fund wallet
@@ -169,6 +178,21 @@ export function WalletScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <View>
+          <Modal visible={showOverlay} animationType="slide" transparent={true}>
+            <View style={styles.overlay}>
+              <View style={styles.overlayContent}>
+                <TouchableOpacity
+                  style={styles.closeButton}
+                  onPress={closeOverlay}
+                >
+                  <Icon name="close" type="material" color="black" size={50} />
+                </TouchableOpacity>
+                {selectedItem === "fundWallet" ? <FundWalletOverlay /> : <></>}
+              </View>
+            </View>
+          </Modal>
+        </View>
       </View>
       <BottomIconMenu navigation={navigation} />
     </View>
@@ -235,5 +259,24 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  overlayContent: {
+    backgroundColor: "white",
+    width: "100%",
+    borderRadius: 8,
+    paddingTop: 60,
+    flexDirection: "column",
+  },
+  closeButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    zIndex: 1,
   },
 });
