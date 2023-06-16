@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { LoginScreen } from "./components/User/Login";
+import { SigninScreen } from "./components/User/Signin";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SignUpScreen } from "./components/User/Signup";
@@ -18,7 +18,7 @@ export default function App() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={SigninScreen} />
         <Stack.Screen name="Signup" component={SignUpScreen} />
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
         <Stack.Screen name="Wallet" component={WalletScreen} />

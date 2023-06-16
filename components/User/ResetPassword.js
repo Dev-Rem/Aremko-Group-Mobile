@@ -9,8 +9,7 @@ import {
   Keyboard,
 } from "react-native";
 import { Button } from "@rneui/themed";
-import Checkbox from "expo-checkbox";
-
+import { styles } from "../Utils/Styles";
 export function ResetPasswordScreen({ navigation }) {
   const [data, setData] = React.useState({
     email: "",
@@ -36,8 +35,13 @@ export function ResetPasswordScreen({ navigation }) {
       }}
     >
       <View style={styles.signupContainer}>
-        <View style={styles.signupMessageContainer}>
-          <Text style={styles.signupMessageContainer.signupMessage}>
+        <View style={styles.headerMessageContainer}>
+          <Text
+            style={{
+              color: "black",
+              fontSize: 35,
+            }}
+          >
             REST PASSWORD
           </Text>
           <Text
@@ -56,10 +60,16 @@ export function ResetPasswordScreen({ navigation }) {
           </Text>
         </View>
 
-        <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.label}>Email *</Text>
+        <View
+          style={{
+            width: "100%",
+            justifyContent: "flex-start",
+            flexDirection: "column",
+          }}
+        >
+          <Text style={styles.label}>Email *</Text>
           <TextInput
-            style={styles.signupContainer.input}
+            style={styles.input}
             placeholder="example@email.com"
             keyboardType="email-address"
             value={data.email}
@@ -67,7 +77,7 @@ export function ResetPasswordScreen({ navigation }) {
           />
         </View>
         <Button
-          style={styles.signupContainer.loginButton}
+          style={styles.button}
           title="SEND EMAIL"
           titleStyle={{ fontWeight: "bold", color: "white" }}
           type="clear"
@@ -90,73 +100,3 @@ export function ResetPasswordScreen({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  signupMessageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: 50,
-    signupMessage: {
-      color: "black",
-      fontSize: 35,
-    },
-  },
-
-  signupContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    padding: 30,
-    inputContainer: {
-      marginBottom: 10,
-      width: "100%",
-    },
-    label: {
-      fontSize: 12,
-      fontWeight: "bold",
-      marginBottom: 10,
-    },
-    input: {
-      padding: 10,
-      borderRadius: 5,
-      fontSize: 15,
-      width: "100%",
-      backgroundColor: "white",
-      shadowColor: "black",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-    loginButton: {
-      width: 150,
-      marginTop: 15,
-      backgroundColor: "#922268",
-      borderColor: "white",
-      borderRadius: 5,
-    },
-    nameContainer: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      width: "100%",
-      marginBottom: 10,
-      inputNameContainer: {
-        flex: 1,
-        marginLeft: 5,
-        marginRight: 5,
-      },
-      inputName: {
-        padding: 10,
-        borderRadius: 5,
-        fontSize: 15,
-        width: "100%",
-        backgroundColor: "white",
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-      },
-    },
-  },
-});

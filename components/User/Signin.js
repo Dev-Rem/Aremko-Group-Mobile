@@ -1,6 +1,7 @@
 import React from "react";
 import IMG_8165 from "../../assets/images/LoginBackground.jpg";
 import { Button } from "@rneui/themed";
+import { styles } from "../Utils/Styles";
 
 import {
   StyleSheet,
@@ -11,9 +12,10 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Alert,
+  Keyboard,
 } from "react-native";
 
-export function LoginScreen({ navigation }) {
+export function SigninScreen({ navigation }) {
   const [email, setEmail] = React.useState("");
   const [data, setData] = React.useState({
     email: "",
@@ -43,46 +45,64 @@ export function LoginScreen({ navigation }) {
     >
       <ImageBackground source={IMG_8165} style={styles.backgroundImage}>
         <View style={styles.loginInfoContainer}>
-          <View style={styles.loginInfoContainer.inputContainer}>
-            <Text style={styles.loginInfoContainer.label}>Email</Text>
+          <View style={{ flexDirection: "column", width: "100%", margin: 10 }}>
+            <Text style={[styles.label, { color: "white" }]}>Email</Text>
             <TextInput
-              style={styles.loginInfoContainer.input}
+              style={styles.input}
               placeholder="john.doe@email.com"
               value={data.email}
               onChangeText={(text) => handleChange("email", text)}
               keyboardType="email-address"
             />
           </View>
-          <View style={styles.loginInfoContainer.inputContainer}>
-            <Text style={styles.loginInfoContainer.label}>Password</Text>
+          <View style={{ flexDirection: "column", width: "100%", margin: 10 }}>
+            <Text style={[styles.label, { color: "white" }]}>Password</Text>
             <TextInput
-              style={styles.loginInfoContainer.input}
+              style={styles.input}
               placeholder="Password"
               secureTextEntry={true}
               onChangeText={(text) => handleChange("password", text)}
             />
             <Button
-              style={styles.loginInfoContainer.loginButton}
-              title="LOG IN"
+              style={styles.button}
+              title="SIGN IN"
               titleStyle={{ fontWeight: "bold", color: "white" }}
               type="clear"
               onPress={() => navigation.navigate("Dashboard")}
             />
           </View>
-          <Text style={styles.loginInfoContainer.bottomText}>
-            Forgot password?{"  "}
+          <Text
+            style={{
+              color: "white",
+            }}
+          >
+            Forgot password?
             <TouchableOpacity
               onPress={() => navigation.navigate("Reset-Password")}
             >
-              <Text style={styles.loginInfoContainer.signUpLink}>
+              <Text
+                style={{
+                  color: "#e845a9",
+                }}
+              >
                 Reset Now
               </Text>
             </TouchableOpacity>
           </Text>
-          <Text style={styles.loginInfoContainer.bottomText}>
+          <Text
+            style={{
+              color: "white",
+            }}
+          >
             Dont't have an account?{"  "}
             <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-              <Text style={styles.loginInfoContainer.signUpLink}>Sign Up</Text>
+              <Text
+                style={{
+                  color: "#e845a9",
+                }}
+              >
+                Sign Up
+              </Text>
             </TouchableOpacity>
           </Text>
         </View>
@@ -90,48 +110,3 @@ export function LoginScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  backgroundImage: {
-    marginTop: 45,
-    flex: 1,
-    resizeMode: "cover",
-    width: "100%",
-    flexDirection: "column",
-  },
-  loginInfoContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: 50,
-    inputContainer: {
-      marginBottom: 10,
-    },
-    label: {
-      fontSize: 16,
-      fontWeight: "bold",
-      marginBottom: 5,
-      color: "white",
-    },
-    input: {
-      padding: 10,
-      borderRadius: 5,
-      width: 250,
-      backgroundColor: "white",
-    },
-    loginButton: {
-      width: 150,
-      marginTop: 15,
-      marginLeft: 50,
-      backgroundColor: "#922268",
-      borderColor: "white",
-      borderRadius: 5,
-    },
-    bottomText: {
-      color: "white",
-    },
-    signUpLink: {
-      color: "#e845a9",
-    },
-  },
-});

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  StyleSheet,
   View,
   Text,
   TextInput,
@@ -14,6 +13,7 @@ import * as ImagePicker from "expo-image-picker";
 import Checkbox from "expo-checkbox";
 import { Button } from "@rneui/themed";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { styles } from "../Utils/Styles";
 
 export function KycScreen({ navigation }) {
   const [isPickerVisible, setIsPickerVisible] = React.useState(false);
@@ -84,8 +84,13 @@ export function KycScreen({ navigation }) {
       }}
     >
       <View style={styles.signupContainer}>
-        <View style={styles.signupMessageContainer}>
-          <Text style={styles.signupMessageContainer.signupMessage}>
+        <View style={styles.headerMessageContainer}>
+          <Text
+            style={{
+              color: "black",
+              fontSize: 35,
+            }}
+          >
             Proof Of Identity
           </Text>
 
@@ -96,13 +101,12 @@ export function KycScreen({ navigation }) {
             Fields with asterisk (*) are required
           </Text>
         </View>
-
-        <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.label}>
-            Bank Verification Number (BVN) *
-          </Text>
+        <View
+          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
+        >
+          <Text style={styles.label}>Bank Verification Number (BVN) *</Text>
           <TextInput
-            style={styles.signupContainer.input}
+            style={styles.input}
             placeholder="12345678901"
             maxLength={11}
             underlineColor="transparent"
@@ -111,10 +115,11 @@ export function KycScreen({ navigation }) {
             keyboardType="numeric"
           />
         </View>
-        <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.label}>
-            Type of Identification (ID) *
-          </Text>
+
+        <View
+          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
+        >
+          <Text style={styles.label}>Type of Identification (ID) *</Text>
 
           <TouchableOpacity
             onPress={() => {
@@ -123,7 +128,7 @@ export function KycScreen({ navigation }) {
             }}
           >
             <TextInput
-              style={styles.signupContainer.input}
+              style={styles.input}
               maxLength={11}
               editable={false}
               placeholder="Type of Identification"
@@ -172,10 +177,12 @@ export function KycScreen({ navigation }) {
             </Modal>
           </View>
         </View>
-        <View style={styles.signupContainer.inputContainer}>
+        <View
+          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
+        >
           <Text style={styles.signupContainer.label}>ID No *</Text>
           <TextInput
-            style={styles.signupContainer.input}
+            style={styles.input}
             placeholder="12345678901"
             maxLength={20}
             value={data.id_number}
@@ -184,39 +191,46 @@ export function KycScreen({ navigation }) {
         </View>
         <View
           style={{
+            margin: 5,
+            minWidth: "100%",
             flexDirection: "row",
-            alignItems: "flex-start",
-            width: "100%",
-            marginBottom: 5,
+            justifyContent: "space-evenly",
           }}
         >
-          <Text>Front of ID </Text>
-          <Checkbox
-            style={{ width: 15, height: 15 }}
-            value={checked.front}
-            disabled={true}
-          />
-          <Text style={{ fontSize: 10, marginLeft: 10 }}>
-            {images.front.assets ? images.front.assets[0].fileName : ""}
-          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+            }}
+          >
+            <Text>Front of ID </Text>
+            <Checkbox
+              style={{ width: 15, height: 15 }}
+              value={checked.front}
+              disabled={true}
+            />
+            <Text style={{ fontSize: 10, marginLeft: 10 }}>
+              {images.front.assets ? images.front.assets[0].fileName : ""}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+            }}
+          >
+            <Text>Back of ID </Text>
+            <Checkbox
+              style={{ width: 15, height: 15 }}
+              value={checked.back}
+              disabled={true}
+            />
+            <Text style={{ fontSize: 10, marginLeft: 10 }}>
+              {images.back.assets ? images.back.assets[0].fileName : ""}
+            </Text>
+          </View>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          <Text>Back of ID </Text>
-          <Checkbox
-            style={{ width: 15, height: 15 }}
-            value={checked.back}
-            disabled={true}
-          />
-          <Text style={{ fontSize: 10, marginLeft: 10 }}>
-            {images.back.assets ? images.back.assets[0].fileName : ""}
-          </Text>
-        </View>
+
         <View
           style={{
             marginTop: 10,
@@ -249,7 +263,7 @@ export function KycScreen({ navigation }) {
         </View>
 
         <Button
-          style={styles.signupContainer.loginButton}
+          style={styles.button}
           title="SUBMIT"
           titleStyle={{ fontWeight: "bold", color: "white" }}
           type="clear"
@@ -259,76 +273,3 @@ export function KycScreen({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  signupMessageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: 50,
-    signupMessage: {
-      color: "black",
-      fontSize: 35,
-    },
-  },
-  signupContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    padding: 30,
-    inputContainer: {
-      marginBottom: 10,
-      width: "100%",
-    },
-    dropdown: {
-      borderColor: "white",
-      width: 350,
-    },
-    label: {
-      fontSize: 12,
-      fontWeight: "bold",
-      marginBottom: 10,
-    },
-    input: {
-      padding: 10,
-      borderRadius: 5,
-      fontSize: 15,
-      width: "100%",
-      backgroundColor: "white",
-      shadowColor: "black",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-    loginButton: {
-      width: 150,
-      marginTop: 15,
-      backgroundColor: "#922268",
-      borderColor: "white",
-      borderRadius: 5,
-    },
-    nameContainer: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      width: "100%",
-      marginBottom: 10,
-      inputNameContainer: {
-        flex: 1,
-        marginLeft: 5,
-        marginRight: 5,
-      },
-      inputName: {
-        padding: 10,
-        borderRadius: 5,
-        fontSize: 15,
-        width: "100%",
-        backgroundColor: "white",
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-      },
-    },
-  },
-});

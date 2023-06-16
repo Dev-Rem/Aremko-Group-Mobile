@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  StyleSheet,
   View,
   Text,
   TextInput,
@@ -11,7 +10,7 @@ import {
 } from "react-native";
 import { Button } from "@rneui/themed";
 import Checkbox from "expo-checkbox";
-
+import { styles } from "../Utils/Styles";
 export function SignUpScreen({ navigation }) {
   const [checked, setChecked] = React.useState(false);
   const [data, setData] = React.useState({
@@ -57,8 +56,13 @@ export function SignUpScreen({ navigation }) {
       }}
     >
       <View style={styles.signupContainer}>
-        <View style={styles.signupMessageContainer}>
-          <Text style={styles.signupMessageContainer.signupMessage}>
+        <View style={styles.headerMessageContainer}>
+          <Text
+            style={{
+              color: "black",
+              fontSize: 35,
+            }}
+          >
             SIGN UP
           </Text>
           <Text style={{ color: "#922268", fontSize: 20 }}>
@@ -73,42 +77,46 @@ export function SignUpScreen({ navigation }) {
           </Text>
         </View>
 
-        <View style={styles.signupContainer.nameContainer}>
-          <View style={styles.signupContainer.nameContainer.inputNameContainer}>
-            <Text style={styles.signupContainer.label}>First Name *</Text>
+        <View style={styles.nameContainer}>
+          <View style={{ flexDirection: "column", width: "47%" }}>
+            <Text style={styles.label}>First Name *</Text>
 
             <TextInput
-              style={styles.signupContainer.nameContainer.inputName}
+              style={styles.input}
               placeholder="John"
               value={data.firstname}
               onChangeText={(text) => handleChange("firstname", text)}
             />
           </View>
-          <View style={styles.signupContainer.nameContainer.inputNameContainer}>
-            <Text style={styles.signupContainer.label}>Last Name *</Text>
+          <View style={{ flexDirection: "column", width: "47%" }}>
+            <Text style={styles.label}>Last Name *</Text>
             <TextInput
-              style={styles.signupContainer.nameContainer.inputName}
+              style={styles.input}
               placeholder="Doe"
               value={data.lastname}
               onChangeText={(text) => handleChange("lastname", text)}
             />
           </View>
         </View>
-        <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.label}>Email *</Text>
+        <View
+          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
+        >
+          <Text style={styles.label}>Email *</Text>
           <TextInput
-            style={styles.signupContainer.input}
+            style={styles.input}
             placeholder="example@email.com"
             keyboardType="email-address"
             value={data.email}
             onChangeText={(text) => handleChange("email", text)}
           />
         </View>
-        <View style={styles.signupContainer.inputContainer}>
-          <Text style={styles.signupContainer.label}>Phone Number *</Text>
+        <View
+          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
+        >
+          <Text style={styles.label}>Phone Number *</Text>
           <View style={{ flexDirection: "row" }}>
             <TextInput
-              style={styles.signupContainer.input}
+              style={styles.input}
               placeholder="+000 000 000 0000"
               value={data.phone_number}
               onChangeText={(text) => handleChange("phone_number", text)}
@@ -117,21 +125,23 @@ export function SignUpScreen({ navigation }) {
             />
           </View>
         </View>
-        <View style={styles.signupContainer.nameContainer}>
-          <View style={styles.signupContainer.nameContainer.inputNameContainer}>
-            <Text style={styles.signupContainer.label}>Password *</Text>
+        <View style={styles.nameContainer}>
+          <View style={{ flexDirection: "column", width: "47%" }}>
+            <Text style={styles.label}>Password *</Text>
             <TextInput
-              style={styles.signupContainer.nameContainer.inputName}
+              style={styles.input}
               placeholder="Password"
               secureTextEntry
               value={data.password}
               onChangeText={(text) => handleChange("password", text)}
             />
           </View>
-          <View style={styles.signupContainer.nameContainer.inputNameContainer}>
-            <Text style={styles.signupContainer.label}>Confirm password *</Text>
+          <View style={{ flexDirection: "column", width: "47%" }}>
+            <Text style={styles.label}>
+              Confirm password *
+            </Text>
             <TextInput
-              style={styles.signupContainer.nameContainer.inputName}
+              style={styles.input}
               placeholder="Confirm password"
               secureTextEntry
               value={data.confirm_password}
@@ -150,7 +160,7 @@ export function SignUpScreen({ navigation }) {
           <Text>I agree to the terms and conditions</Text>
         </View>
         <Button
-          style={styles.signupContainer.loginButton}
+          style={styles.button}
           title="SIGN UP"
           titleStyle={{ fontWeight: "bold", color: "white" }}
           type="clear"
@@ -160,73 +170,3 @@ export function SignUpScreen({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  signupMessageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: 50,
-    signupMessage: {
-      color: "black",
-      fontSize: 35,
-    },
-  },
-
-  signupContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    padding: 30,
-    inputContainer: {
-      marginBottom: 10,
-      width: "100%",
-    },
-    label: {
-      fontSize: 12,
-      fontWeight: "bold",
-      marginBottom: 10,
-    },
-    input: {
-      padding: 10,
-      borderRadius: 5,
-      fontSize: 15,
-      width: "100%",
-      backgroundColor: "white",
-      shadowColor: "black",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-    loginButton: {
-      width: 150,
-      marginTop: 15,
-      backgroundColor: "#922268",
-      borderColor: "white",
-      borderRadius: 5,
-    },
-    nameContainer: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      width: "100%",
-      marginBottom: 10,
-      inputNameContainer: {
-        flex: 1,
-        marginLeft: 5,
-        marginRight: 5,
-      },
-      inputName: {
-        padding: 10,
-        borderRadius: 5,
-        fontSize: 15,
-        width: "100%",
-        backgroundColor: "white",
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-      },
-    },
-  },
-});
