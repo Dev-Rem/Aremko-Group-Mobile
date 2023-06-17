@@ -10,7 +10,7 @@ import {
 import { ListItem } from "@rneui/themed";
 import { Switch } from "@rneui/themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const { width, height } = Dimensions.get("window");
+import { styles } from "../../Utils/Styles";
 
 const EnableBiometricsOverlay = () => {
   const [useBiometrics, setUseBiometrics] = React.useState({
@@ -47,8 +47,10 @@ const EnableBiometricsOverlay = () => {
   }, []);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Text style={styles.headText}>Enable Biometrics </Text>
+      <View style={[styles.overlayContainer, { padding: 0 }]}>
+        <Text style={[styles.overlayHeaderText, { paddingLeft: 12 }]}>
+          Enable Biometrics{" "}
+        </Text>
         <ListItem bottomDivider>
           <ListItem.Content>
             <ListItem.Subtitle>Allow biometrics for login</ListItem.Subtitle>
@@ -86,20 +88,4 @@ const EnableBiometricsOverlay = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  headText: {
-    backgroundColor: "white",
-    paddingLeft: 12,
-    paddingTop: 10,
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    height: height * 0.7,
-    width: width * 1.0,
-    justifyContent: "flex-start",
-  },
-});
 export default EnableBiometricsOverlay;

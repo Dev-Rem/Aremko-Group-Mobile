@@ -15,7 +15,7 @@ import UpdateKycOverlay from "./UpdateKyc";
 import ChangePasswordOverlay from "./ChangePassword";
 import UpdateEmailAddressOverlay from "./UpdateEmailAddress";
 import NotificationSettingsOverlay from "./NotificationSettings";
-const { width, height } = Dimensions.get("window");
+import { styles } from "../../Utils/Styles";
 
 const AccountSettingsOverlay = () => {
   const [showOverlay, setShowOverlay] = React.useState(false);
@@ -31,8 +31,10 @@ const AccountSettingsOverlay = () => {
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Text style={styles.headText}>Account Settings</Text>
+      <View style={[styles.overlayContainer, { padding: 0 }]}>
+        <Text style={[styles.overlayHeaderText, { padding: 12 }]}>
+          Account Settings
+        </Text>
         <TouchableOpacity onPress={() => openOverlay("accountInfoUpdate")}>
           <ListItem bottomDivider>
             <ListItem.Content>
@@ -74,7 +76,7 @@ const AccountSettingsOverlay = () => {
         <View style={styles.overlay}>
           <View style={styles.overlayContent}>
             <TouchableOpacity style={styles.closeButton} onPress={closeOverlay}>
-              <Icon name="close" type="material" color="black" size={30} />
+              <Icon name="close" type="material" color="black" size={50} />
             </TouchableOpacity>
             {selectedItem === "accountInfoUpdate" ? (
               <UpdateAccountInfoOverlay />
@@ -105,40 +107,4 @@ const AccountSettingsOverlay = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  headText: {
-    backgroundColor: "white",
-    paddingLeft: 12,
-    paddingTop: 10,
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    height: height * 0.7,
-    width: width * 1.0,
-    justifyContent: "flex-start",
-  },
-
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  overlayContent: {
-    backgroundColor: "#d6d6d6",
-    width: "100%",
-    borderRadius: 8,
-    paddingTop: 40,
-    flexDirection: "column",
-  },
-  closeButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-});
 export default AccountSettingsOverlay;

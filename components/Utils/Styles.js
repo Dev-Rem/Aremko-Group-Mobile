@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.3,
     shadowRadius: 4,
   },
   // purple button
@@ -69,10 +69,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   overlayContent: {
-    backgroundColor: "#d6d6d6",
+    backgroundColor: "white",
     width: "100%",
     borderRadius: 8,
-    paddingTop: 40,
+    paddingTop: 60,
     flexDirection: "column",
   },
   closeButton: {
@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
       marginLeft: 20,
     },
   },
-
+// debit card container
   debitCardContainer: {
     justifyContent: "space-between",
     height: 200,
@@ -203,5 +203,19 @@ export const styles = StyleSheet.create({
     height: 70,
     borderTopEndRadius: 10,
     borderTopStartRadius: 10,
+  },
+  overlayContainer: {
+    flex: 1,
+    backgroundColor: "white",
+    height: height * 0.7,
+    width: width * 1.0,
+    justifyContent: "flex-start",
+    padding: 30,
+  },
+  overlayHeaderText: {
+    backgroundColor: "white",
+    paddingTop: 10,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

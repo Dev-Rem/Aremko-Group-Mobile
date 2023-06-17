@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { Button } from "@rneui/themed";
-const { width, height } = Dimensions.get("window");
+import { styles } from "../../Utils/Styles";
 
 const TwoFactorAuthenticationOverlay = () => {
   const [data, setData] = React.useState({
@@ -28,30 +28,59 @@ const TwoFactorAuthenticationOverlay = () => {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={style.container}>
-          <Text style={style.headText}>Set new security question</Text>
+        <View style={styles.overlayContainer}>
+          <Text style={styles.overlayHeaderText}>
+            Set new security question
+          </Text>
           <Text style={{ marginTop: 5, fontSize: 12 }}>
             Fields with asterisk (*) are required.
           </Text>
+          <View style={{ margin: 10 }} />
 
-          <View style={style.formContainer}>
-            <Text style={style.label}>Security question *</Text>
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%",
+              marginTop: 10,
+            }}
+          >
+            <Text style={styles.label}>Security question *</Text>
             <TextInput
-              style={style.input}
+              style={styles.input}
               placeholder="e.g. where were you born?"
               value={data.security_question}
               onChangeText={(text) => handleChange("security_question", text)}
             />
-            <Text style={style.label}>Secret answer *</Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%",
+              marginTop: 10,
+            }}
+          >
+            <Text style={styles.label}>Secret answer *</Text>
             <TextInput
-              style={style.input}
+              style={styles.input}
               placeholder="e.g. name of city"
               value={data.secret_answer}
               onChangeText={(text) => handleChange("secret_answer", text)}
             />
-            <Text style={style.label}>Password *</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%",
+              marginTop: 10,
+            }}
+          >
+            <Text style={styles.label}>Password *</Text>
             <TextInput
-              style={style.input}
+              style={styles.input}
               secureTextEntry
               placeholder="your login password"
               value={data.password}
@@ -59,7 +88,7 @@ const TwoFactorAuthenticationOverlay = () => {
             />
           </View>
           <Button
-            style={style.button}
+            style={styles.button}
             title="SUBMIT"
             titleStyle={{ fontWeight: "bold", color: "white" }}
             type="clear"
@@ -69,47 +98,5 @@ const TwoFactorAuthenticationOverlay = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    height: height * 0.7,
-    width: width * 1.0,
-    justifyContent: "flex-start",
-    padding: 30,
-  },
-  headText: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
-  formContainer: {
-    justifyContent: "center",
-  },
-  label: {
-    fontSize: 12,
-    fontWeight: "bold",
-    marginBottom: 10,
-    marginTop: 20,
-  },
-  input: {
-    padding: 10,
-    borderRadius: 5,
-    fontSize: 15,
-    width: "100%",
-    backgroundColor: "white",
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: "#922268",
-    borderColor: "white",
-    borderRadius: 5,
-  },
-});
 
 export default TwoFactorAuthenticationOverlay;
