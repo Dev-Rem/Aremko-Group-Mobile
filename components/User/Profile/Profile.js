@@ -216,7 +216,7 @@ export function ProfileScreen({ navigation }) {
                       name="close"
                       type="material"
                       color="black"
-                      size={30}
+                      size={50}
                     />
                   </TouchableOpacity>
                   {selectedItem === "accountSettings" ? (
