@@ -33,6 +33,12 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
   },
+  inputContainer: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    width: "100%",
+    marginTop: 10,
+  },
   // purple button
   button: {
     minWidth: "100%",
@@ -112,7 +118,7 @@ export const styles = StyleSheet.create({
       marginLeft: 20,
     },
   },
-// debit card container
+  // debit card container
   debitCardContainer: {
     justifyContent: "space-between",
     height: 200,
