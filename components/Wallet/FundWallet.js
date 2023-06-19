@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import {
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
   TextInput,
   Text,
   View,
-  Dimensions,
   KeyboardAvoidingView,
 } from "react-native";
 import { Button } from "@rneui/themed";

@@ -1,9 +1,7 @@
 import React from "react";
 import {
-  StyleSheet,
   View,
   Text,
-  Dimensions,
   ScrollView,
   Modal,
   TouchableOpacity,
