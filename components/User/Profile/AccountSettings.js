@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Modal,
-  View,
-  Dimensions,
-} from "react-native";
+import { ScrollView, TouchableOpacity, Text, Modal, View } from "react-native";
 import { ListItem } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
 import UpdateAccountInfoOverlay from "./UpdateAccountInfo";
@@ -15,6 +7,8 @@ import UpdateKycOverlay from "./UpdateKyc";
 import ChangePasswordOverlay from "./ChangePassword";
 import UpdateEmailAddressOverlay from "./UpdateEmailAddress";
 import NotificationSettingsOverlay from "./NotificationSettings";
+import ViewWithdrawalAccountsOverlay from "./ViewWithdrawalAccounts";
+
 import { styles } from "../../Utils/Styles";
 
 const AccountSettingsOverlay = () => {
@@ -70,6 +64,13 @@ const AccountSettingsOverlay = () => {
             </ListItem.Content>
           </ListItem>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => openOverlay("viewWithdrawalAccounts")}>
+          <ListItem bottomDivider>
+            <ListItem.Content>
+              <ListItem.Subtitle>View withdrawal accounts</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        </TouchableOpacity>
       </View>
 
       <Modal visible={showOverlay} animationType="slide" transparent={true}>
@@ -97,6 +98,11 @@ const AccountSettingsOverlay = () => {
             )}
             {selectedItem === "notificationSettings" ? (
               <NotificationSettingsOverlay />
+            ) : (
+              <></>
+            )}
+            {selectedItem === "viewWithdrawalAccounts" ? (
+              <ViewWithdrawalAccountsOverlay />
             ) : (
               <></>
             )}
