@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  ScrollView,
-  Modal,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Modal } from "react-native";
 
 import { BottomIconMenu } from "../Utils/BottomIconMenu";
 import FundWalletOverlay from "./FundWallet";
+import WithdrawOverlay from "./Withdraw";
 import { Avatar } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
 import { handleCopyToClipboard } from "../Utils/CopyToClipboard";
@@ -136,7 +129,7 @@ export function WalletScreen({ navigation }) {
                 </Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openOverlay("withdraw")}>
               <View style={[styles.miniCard, styles.miniCardWhite]}>
                 <Text style={{ fontSize: 15, color: "#922268" }}>Withdraw</Text>
               </View>
@@ -189,6 +182,7 @@ export function WalletScreen({ navigation }) {
                   <Icon name="close" type="material" color="black" size={50} />
                 </TouchableOpacity>
                 {selectedItem === "fundWallet" ? <FundWalletOverlay /> : <></>}
+                {selectedItem === "withdraw" ? <WithdrawOverlay /> : <></>}
               </View>
             </View>
           </Modal>
