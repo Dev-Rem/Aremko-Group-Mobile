@@ -85,6 +85,7 @@ export function SigninScreen({ navigation }) {
                   color: "#e845a9",
                 }}
               >
+                {"  "}
                 Reset Now
               </Text>
             </TouchableOpacity>

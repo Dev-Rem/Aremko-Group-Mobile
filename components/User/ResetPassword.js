@@ -60,13 +60,7 @@ export function ResetPasswordScreen({ navigation }) {
           </Text>
         </View>
 
-        <View
-          style={{
-            width: "100%",
-            justifyContent: "flex-start",
-            flexDirection: "column",
-          }}
-        >
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Email *</Text>
           <TextInput
             style={styles.input}

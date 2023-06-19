@@ -34,14 +34,7 @@ const UpdateAccountInfoOverlay = () => {
             Fields with asterisk (*) are required.
           </Text>
           <View style={{ margin: 10 }} />
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>First Name *</Text>
             <TextInput
               style={styles.input}
@@ -50,14 +43,7 @@ const UpdateAccountInfoOverlay = () => {
               onChangeText={(text) => handleChange("firstname", text)}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Last Name *</Text>
             <TextInput
               style={styles.input}
@@ -67,14 +53,7 @@ const UpdateAccountInfoOverlay = () => {
             />
           </View>
 
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Phone Number *</Text>
             <TextInput
               style={styles.input}
@@ -84,14 +63,7 @@ const UpdateAccountInfoOverlay = () => {
               onChangeText={(text) => handleChange("phone_number", text)}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Password*</Text>
             <TextInput
               style={styles.input}

@@ -46,16 +46,14 @@ const ChangePasswordOverlay = () => {
         <View style={styles.overlayContainer}>
           <Text style={styles.overlayHeaderText}>Change Password</Text>
           <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Password must include a capital letter a number and a special
+            character.
+          </Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
             Fields with asterisk (*) are required.
           </Text>
           <View style={{ margin: 10 }} />
-          <View
-            style={{
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              marginVertical: 5,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Old Password *</Text>
             <TextInput
               style={styles.input}
@@ -65,13 +63,7 @@ const ChangePasswordOverlay = () => {
               onChangeText={(text) => handleChange("old_password", text)}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              marginVertical: 5,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>New Password *</Text>
             <TextInput
               style={styles.input}
@@ -81,13 +73,7 @@ const ChangePasswordOverlay = () => {
               onChangeText={(text) => handleChange("new_password", text)}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              marginVertical: 5,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Confirm NewPassword *</Text>
             <TextInput
               style={styles.input}

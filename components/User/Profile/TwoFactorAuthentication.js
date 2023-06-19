@@ -37,14 +37,7 @@ const TwoFactorAuthenticationOverlay = () => {
           </Text>
           <View style={{ margin: 10 }} />
 
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Security question *</Text>
             <TextInput
               style={styles.input}
@@ -54,14 +47,7 @@ const TwoFactorAuthenticationOverlay = () => {
             />
           </View>
 
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Secret answer *</Text>
             <TextInput
               style={styles.input}
@@ -70,14 +56,7 @@ const TwoFactorAuthenticationOverlay = () => {
               onChangeText={(text) => handleChange("secret_answer", text)}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Password *</Text>
             <TextInput
               style={styles.input}

@@ -78,7 +78,7 @@ export function SignUpScreen({ navigation }) {
         </View>
 
         <View style={styles.nameContainer}>
-          <View style={{ flexDirection: "column", width: "47%" }}>
+          <View style={[styles.inputContainer, { width: "47%" }]}>
             <Text style={styles.label}>First Name *</Text>
 
             <TextInput
@@ -88,7 +88,7 @@ export function SignUpScreen({ navigation }) {
               onChangeText={(text) => handleChange("firstname", text)}
             />
           </View>
-          <View style={{ flexDirection: "column", width: "47%" }}>
+          <View style={[styles.inputContainer, { width: "47%" }]}>
             <Text style={styles.label}>Last Name *</Text>
             <TextInput
               style={styles.input}
@@ -98,9 +98,7 @@ export function SignUpScreen({ navigation }) {
             />
           </View>
         </View>
-        <View
-          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
-        >
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Email *</Text>
           <TextInput
             style={styles.input}
@@ -110,23 +108,19 @@ export function SignUpScreen({ navigation }) {
             onChangeText={(text) => handleChange("email", text)}
           />
         </View>
-        <View
-          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
-        >
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Phone Number *</Text>
-          <View style={{ flexDirection: "row" }}>
-            <TextInput
-              style={styles.input}
-              placeholder="+000 000 000 0000"
-              value={data.phone_number}
-              onChangeText={(text) => handleChange("phone_number", text)}
-              keyboardType="phone-pad"
-              maxLength={15}
-            />
-          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="+000 000 000 0000"
+            value={data.phone_number}
+            onChangeText={(text) => handleChange("phone_number", text)}
+            keyboardType="phone-pad"
+            maxLength={15}
+          />
         </View>
         <View style={styles.nameContainer}>
-          <View style={{ flexDirection: "column", width: "47%" }}>
+          <View style={[styles.inputContainer, { width: "47%" }]}>
             <Text style={styles.label}>Password *</Text>
             <TextInput
               style={styles.input}
@@ -136,10 +130,8 @@ export function SignUpScreen({ navigation }) {
               onChangeText={(text) => handleChange("password", text)}
             />
           </View>
-          <View style={{ flexDirection: "column", width: "47%" }}>
-            <Text style={styles.label}>
-              Confirm password *
-            </Text>
+          <View style={[styles.inputContainer, { width: "47%" }]}>
+            <Text style={styles.label}>Confirm password *</Text>
             <TextInput
               style={styles.input}
               placeholder="Confirm password"

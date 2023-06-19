@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   Keyboard,
-  Button as DefaultButton,
   TouchableWithoutFeedback,
 } from "react-native";
 import Modal from "react-native-modal";
@@ -101,9 +100,7 @@ export function KycScreen({ navigation }) {
             Fields with asterisk (*) are required
           </Text>
         </View>
-        <View
-          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
-        >
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Bank Verification Number (BVN) *</Text>
           <TextInput
             style={styles.input}
@@ -116,9 +113,7 @@ export function KycScreen({ navigation }) {
           />
         </View>
 
-        <View
-          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
-        >
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Type of Identification (ID) *</Text>
 
           <TouchableOpacity
@@ -126,6 +121,7 @@ export function KycScreen({ navigation }) {
               Keyboard.dismiss();
               setIsPickerVisible(true);
             }}
+            style={{ minWidth: "100%" }}
           >
             <TextInput
               style={styles.input}
@@ -177,10 +173,8 @@ export function KycScreen({ navigation }) {
             </Modal>
           </View>
         </View>
-        <View
-          style={{ flexDirection: "column", width: "100%", marginBottom: 5 }}
-        >
-          <Text style={styles.signupContainer.label}>ID No *</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>ID No *</Text>
           <TextInput
             style={styles.input}
             placeholder="12345678901"
@@ -191,7 +185,7 @@ export function KycScreen({ navigation }) {
         </View>
         <View
           style={{
-            margin: 5,
+            marginTop: 10,
             minWidth: "100%",
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -233,32 +227,30 @@ export function KycScreen({ navigation }) {
 
         <View
           style={{
-            marginTop: 10,
             width: "100%",
             flexDirection: "row",
-            justifyContent: "flex-start",
+            justifyContent: "space-around",
           }}
         >
-          <DefaultButton
+          <Button
             title="Upload"
             onPress={() => pickImage(name)}
-            style={{
-              marginRight: 10,
-              backgroundColor: "#c13cab",
-              borderRadius: 5,
-              height: 30,
-              paddingTop: 0,
-            }}
+            style={[
+              styles.button,
+              { backgroundColor: "white", minWidth: "25%" },
+            ]}
+            titleStyle={{ color: "#922268" }}
+            type="clear"
           />
-          <DefaultButton
+          <Button
             title="Undo"
             onPress={() => undoUpload(name)}
-            style={{
-              backgroundColor: "#c13cab",
-              borderRadius: 5,
-              height: 30,
-              paddingTop: 0,
-            }}
+            style={[
+              styles.button,
+              { backgroundColor: "white", minWidth: "25%" },
+            ]}
+            titleStyle={{ color: "#922268" }}
+            type="clear"
           />
         </View>
 

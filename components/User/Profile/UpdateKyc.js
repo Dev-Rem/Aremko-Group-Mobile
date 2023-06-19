@@ -2,41 +2,112 @@ import React, { useState } from "react";
 import {
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   TextInput,
   Text,
   View,
   Dimensions,
+  Keyboard,
+  Modal,
   KeyboardAvoidingView,
 } from "react-native";
 import { Button } from "@rneui/themed";
+import { Picker } from "@react-native-picker/picker";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const { width, height } = Dimensions.get("window");
+import { styles } from "../../Utils/Styles";
 
 const UpdateKycOverlay = () => {
+  const [selectedItem, setSelectedItem] = React.useState("");
+  const [isTypeOfIdPickerVisible, setIsTypeOfIdPickerVisible] =
+    React.useState(false);
+  const [data, setData] = React.useState({
+    bvn: "",
+    type_of_id: "",
+    id_number: "",
+    front_of_id: "",
+    back_of_id: "",
+    password: "",
+  });
+
+  const handleChange = (key, value) => {
+    setData((prevState) => {
+      return { ...prevState, [key]: value };
+    });
+  };
+
+  const handleClosePicker = () => {
+    setIsTypeOfIdPickerVisible(false);
+  };
+
+  const handleConfirmPicker = () => {
+    setIsTypeOfIdPickerVisible(false);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Text style={styles.headText}>Update KYC</Text>
+        <View style={styles.overlayContainer}>
+          <Text style={styles.overlayHeaderText}>Update KYC</Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Kindly make sure all uploaded documents are clear.
+          </Text>
+          <Text style={{ marginTop: 5, fontSize: 12 }}>
+            Fields with asterisk (*) are required.
+          </Text>
 
-          <View style={styles.formContainer}>
-            <Text style={styles.label}>First Name</Text>
-            <TextInput style={styles.input} placeholder="John" />
-            <Text style={styles.label}>Last Name</Text>
-            <TextInput style={styles.input} placeholder="Doe" />
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Bank Verification Number (BVN) *</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="12345678901"
+              maxLength={11}
+              value={data.bvn}
+              onChangeText={(text) => handleChange("bvn", text)}
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Type of Identification (ID) *</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setIsTypeOfIdPickerVisible(true);
+                Keyboard.dismiss();
+              }}
+              style={{ minWidth: "100%" }}
+            >
+              <TextInput
+                style={styles.input}
+                maxLength={11}
+                value={selectedItem}
+                editable={false}
+                placeholder="Type of Identification"
+              />
+            </TouchableOpacity>
+          </View>
 
-            <Text style={styles.label}>Phone Number</Text>
-            <TextInput style={styles.input} placeholder="" />
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>ID No *</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="12345678901"
+              maxLength={11}
+              value={data.id_number}
+              onChangeText={(text) => handleChange("id_number", text)}
+            />
+          </View>
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Password</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
               placeholder="your login password"
+              value={data.password}
+              onChangeText={(text) => handleChange("password", text)}
             />
           </View>
+
           <Button
             style={styles.button}
             title="SAVE"
@@ -45,68 +116,43 @@ const UpdateKycOverlay = () => {
           />
         </View>
       </ScrollView>
+      {/* <Modal
+        isVisible={isTypeOfIdPickerVisible}
+        onBackdropPress={handleClosePicker}
+        onBackButtonPress={handleClosePicker}
+        useNativeDriverForBackdrop
+        style={{ margin: 0, justifyContent: "flex-end" }}
+      >
+        <View style={{ backgroundColor: "white" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              backgroundColor: "#e5e5e5",
+            }}
+          >
+            <Button title="Confirm" onPress={handleConfirmPicker} />
+          </View>
+
+          <Picker
+            selectedValue={data.type_of_id}
+            onValueChange={(value) => handleChange("type_of_id", value)}
+          >
+            <Picker.Item label="Select Type of ID" value="" />
+            <Picker.Item
+              label="International Passport"
+              value="International Passport"
+            />
+            <Picker.Item
+              label="National Identification Number"
+              value="National Identification Number"
+            />
+            <Picker.Item label="Driver's License" value="Driver's License" />
+          </Picker>
+        </View>
+      </Modal> */}
     </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({
-  headText: {
-    backgroundColor: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    height: height * 0.7,
-    width: width * 1.0,
-    justifyContent: "flex-start",
-    padding: 30,
-  },
-  formContainer: {
-    justifyContent: "center",
-  },
-  label: {
-    fontSize: 12,
-    fontWeight: "bold",
-    marginBottom: 10,
-    marginTop: 20,
-  },
-  input: {
-    padding: 10,
-    borderRadius: 5,
-    fontSize: 15,
-    width: "100%",
-    backgroundColor: "white",
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: "#922268",
-    borderColor: "white",
-    borderRadius: 5,
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  overlayContent: {
-    backgroundColor: "#d6d6d6",
-    width: "100%",
-    borderRadius: 8,
-    paddingTop: 40,
-    flexDirection: "column",
-  },
-  closeButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    zIndex: 1,
-  },
-});
 export default UpdateKycOverlay;

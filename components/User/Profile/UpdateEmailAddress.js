@@ -30,14 +30,7 @@ const UpdateEmailAddressOverlay = () => {
             Fields with asterisk (*) are required.
           </Text>
           <View style={{ margin: 10 }} />
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>New Email Address *</Text>
             <TextInput
               style={styles.input}
@@ -47,14 +40,7 @@ const UpdateEmailAddressOverlay = () => {
               keyboardType="email-address"
             />
           </View>
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.inputContainer}>
             <Text style={styles.label}>Password *</Text>
             <TextInput
               style={styles.input}
