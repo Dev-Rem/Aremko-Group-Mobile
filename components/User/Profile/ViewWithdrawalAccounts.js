@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Modal,
+  Alert,
 } from "react-native";
 import { styles } from "../../Utils/Styles";
 import { ListItem } from "@rneui/themed";
@@ -13,32 +14,59 @@ import { Icon } from "@rneui/themed";
 import AddWithdrawalAccountOverlay from "./AddWithdrawalAccount";
 
 const ViewWithdrawalAccountsOverlay = () => {
+  const [use, setUse] = React.useState(null);
   const [showOverlay, setShowOverlay] = React.useState(false);
 
   const [data, setData] = React.useState([
     {
+      id: 1,
       bank_name: "lorem",
       account_name: "aboris nisi ",
       account_number: "342454346342",
     },
     {
+      id: 2,
       bank_name: "lorem",
       account_name: "aboris nisi ",
       account_number: "342454346342",
     },
     {
+      id: 3,
       bank_name: "lorem",
       account_name: "aboris nisi ",
       account_number: "342454346342",
     },
   ]);
 
-  const openOverlay = () => {
+  const openOverlay = (use) => {
+    setUse(use);
     setShowOverlay(true);
   };
 
   const closeOverlay = () => {
     setShowOverlay(false);
+  };
+
+  const handleDelete = (id) => {
+    Alert.alert(
+      "Delete Withdrawal Account",
+      "Are you sure you want to delete this account?",
+      [
+        {
+          text: "YES",
+          onPress: () => {
+            setData(data.filter((item) => item.id !== id));
+          },
+        },
+        {
+          text: "CANCEL",
+          onPress: () => {
+            setData(data.filter((item) => item.id !== id));
+          },
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   return (
@@ -53,7 +81,7 @@ const ViewWithdrawalAccountsOverlay = () => {
           <Text style={{ marginTop: 5, fontSize: 15, paddingHorizontal: 12 }}>
             You can add, delete or edit your withdrawal acocunts
           </Text>
-          <TouchableOpacity onPress={openOverlay}>
+          <TouchableOpacity onPress={() => openOverlay("add")}>
             <View style={{ flexDirection: "row" }}>
               <Text
                 style={{
@@ -75,7 +103,7 @@ const ViewWithdrawalAccountsOverlay = () => {
           </TouchableOpacity>
 
           {data.map((item) => (
-            <ListItem bottomDivider>
+            <ListItem bottomDivider key={item.id}>
               <ListItem.Content>
                 <ListItem.Title>
                   Account name: {item.account_name}
@@ -85,7 +113,7 @@ const ViewWithdrawalAccountsOverlay = () => {
                   Account number: {item.account_number}
                 </ListItem.Subtitle>
               </ListItem.Content>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => openOverlay("edit")}>
                 <Icon
                   name="pencil"
                   type="material-community"
@@ -93,7 +121,7 @@ const ViewWithdrawalAccountsOverlay = () => {
                   size={30}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => handleDelete(item.id)}>
                 <Icon
                   name="delete-outline"
                   type="material-community"
@@ -113,7 +141,16 @@ const ViewWithdrawalAccountsOverlay = () => {
               >
                 <Icon name="close" type="material" color="black" size={50} />
               </TouchableOpacity>
-              <AddWithdrawalAccountOverlay />
+              {use === "add" ? (
+                <AddWithdrawalAccountOverlay use={use} />
+              ) : (
+                <></>
+              )}
+              {use === "edit" ? (
+                <AddWithdrawalAccountOverlay use={use} />
+              ) : (
+                <></>
+              )}
             </View>
           </View>
         </Modal>

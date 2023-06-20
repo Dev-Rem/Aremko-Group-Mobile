@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { Button } from "@rneui/themed";
 import { styles } from "../../Utils/Styles";
-const AddWithdrawalAccountOverlay = () => {
+
+const AddWithdrawalAccountOverlay = (props) => {
   const [data, setData] = React.useState({
     bank_name: "",
     account_name: "",
@@ -31,7 +32,11 @@ const AddWithdrawalAccountOverlay = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ padding: 30 }}
         >
-          <Text style={styles.overlayHeaderText}>Add Withdrawal Account</Text>
+          <Text style={styles.overlayHeaderText}>
+            {props.use === "add"
+              ? "Add Withdrawal Account"
+              : "Edit Withdrawal Account"}
+          </Text>
           <Text style={{ marginTop: 5, fontSize: 12 }}>
             Kindly make sure account details provided are correct in order to
             avoid withdrawal issues.
@@ -41,26 +46,18 @@ const AddWithdrawalAccountOverlay = () => {
           </Text>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Bank name</Text>
+            <Text style={styles.label}>Bank name *</Text>
 
-            <TouchableOpacity
-              onPress={() => {
-                Keyboard.dismiss();
-              }}
-              style={{ width: "100%" }}
-            >
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholder="Your bank name"
-                value={data.bank_name}
-                onChangeText={(text) => handleChange("bank_name", text)}
-              />
-            </TouchableOpacity>
+            <TextInput
+              style={styles.input}
+              placeholder="Your bank name"
+              value={data.bank_name}
+              onChangeText={(text) => handleChange("bank_name", text)}
+            />
           </View>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Account name</Text>
+            <Text style={styles.label}>Account name *</Text>
             <TextInput
               style={styles.input}
               placeholder="Your account name"
@@ -69,7 +66,7 @@ const AddWithdrawalAccountOverlay = () => {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Account number</Text>
+            <Text style={styles.label}>Account number *</Text>
             <TextInput
               style={styles.input}
               placeholder="Your account number"
@@ -78,7 +75,7 @@ const AddWithdrawalAccountOverlay = () => {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Passowrd</Text>
+            <Text style={styles.label}>Passowrd *</Text>
             <TextInput
               style={styles.input}
               placeholder="Your login password"
@@ -88,7 +85,7 @@ const AddWithdrawalAccountOverlay = () => {
           </View>
           <Button
             style={styles.button}
-            title="ADD"
+            title={props.use === "add" ? "ADD" : "EDIT"}
             titleStyle={{ fontWeight: "bold", color: "white" }}
             type="clear"
           />
