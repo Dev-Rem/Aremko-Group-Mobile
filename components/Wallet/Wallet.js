@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView, Modal } from "react-native";
 
-import { BottomIconMenu } from "../Utils/BottomIconMenu";
 import FundWalletOverlay from "./FundWallet";
 import WithdrawOverlay from "./Withdraw";
 import { Avatar } from "@rneui/themed";
@@ -11,7 +10,7 @@ import * as Clipboard from "expo-clipboard";
 
 import { styles } from "../Utils/Styles";
 
-export function WalletScreen({ navigation }) {
+export function WalletScreen() {
   const [showCardDetails, setShowCardDetails] = React.useState(true);
   const [showOverlay, setShowOverlay] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(null);
@@ -188,7 +187,6 @@ export function WalletScreen({ navigation }) {
           </Modal>
         </View>
       </View>
-      <BottomIconMenu navigation={navigation} />
     </View>
   );
 }

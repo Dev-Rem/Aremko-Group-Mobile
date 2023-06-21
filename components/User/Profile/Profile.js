@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
-import { BottomIconMenu } from "../../Utils/BottomIconMenu";
+import { View, Text, ScrollView, Modal, TouchableOpacity } from "react-native";
 import { Avatar } from "@rneui/themed";
 import { ListItem } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
@@ -239,8 +232,6 @@ export function ProfileScreen({ navigation }) {
           </View>
         </ScrollView>
       </View>
-
-      <BottomIconMenu navigation={navigation} />
     </View>
   );
 }

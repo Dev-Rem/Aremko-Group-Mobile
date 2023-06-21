@@ -264,7 +264,6 @@ export function DashboardScreen({ navigation }) {
           </View>
         </ScrollView>
       </View>
-      <BottomIconMenu navigation={navigation} />
     </View>
   );
 }

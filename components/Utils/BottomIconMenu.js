@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { Icon } from "@rneui/themed";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-export function BottomIconMenu({ navigation }) {
+export function BottomIconMenu() {
+  const navigation = useNavigation();
   return (
     <View style={styles.bottomIconMenu}>
       <View style={styles.bottomIconMenu.iconContainer}>
@@ -35,7 +37,7 @@ export function BottomIconMenu({ navigation }) {
           type="material-community"
           color="#922268"
           size={30}
-          onPress={() => console.log("alerts")}
+          onPress={() => navigation.navigate("Notifications")}
         />
         <Text style={styles.bottomIconMenu.iconContainer.iconText}>
           Notificantions
